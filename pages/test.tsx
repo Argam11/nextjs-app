@@ -12,29 +12,47 @@ const Test = () => {
             });
       
             window.FB.getLoginStatus(function (response: any) {   // Called after the JS SDK has been initialized.
-              // statusChangeCallback(response);        // Returns the login status.
-              console.log('response', response);
+              statusChangeCallback(response);        // Returns the login status.
+            //   console.log('response', response);
             });
          console.log('window.fbAsyncInit', window.fbAsyncInit)
         }
       }, []);
+
+      function statusChangeCallback(response) {  // Called with the results from FB.getLoginStatus().
+        console.log('statusChangeCallback');
+        console.log(response);                   // The current login status of the person.
+        if (response.status === 'connected') {   // Logged into your webpage and Facebook.
+          testAPI();  
+        } else {        
+            console.log('Please login to this webpage.');
+        }
+      }
+      function testAPI() {                      // Testing Graph API after login.  See statusChangeCallback() for when this call is made.
+        console.log('Welcome!  Fetching your information.... ');
+        window.FB.api('/me', function(response) {
+          console.log('Successful login for: ' + response.name);
+          document.getElementById('status').innerHTML =
+            'Thanks for logging in, ' + response.name + '!';
+        });
+      }
     
       const onFacebookLogin = () => {
         if(window) {
           console.log(123);
       
-          window.FB.login((res: any) => {
-            console.log('res', res);
-          })
+          FB.getLoginStatus(function(response) {   // See the onlogin handler
+            statusChangeCallback(response);
+          });
         }
       };
       const onFacebookLogout = () => {
         if(window) {
           console.log(123);
       
-          window.FB.logout((res: any) => {
-            console.log('res', res);
-          })
+          FB.getLoginStatus(function(response) {   // See the onlogin handler
+            statusChangeCallback(response);
+          });
         }
       };
 
