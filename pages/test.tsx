@@ -60,7 +60,7 @@ const Test = () => {
     <div>
 
 
-        <button onClick={onFacebookLogin}>Login with Facebook</button>
+        <button onClick={onFacebookLogin}>Login with Facebook 2</button>
         <button onClick={onFacebookLogout}>Logout with Facebook</button>
     </div>
   )
