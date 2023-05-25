@@ -48,7 +48,7 @@ const Test = () => {
 
     // Parameters to pass to OAuth 2.0 endpoint.
     var params = {'client_id': '351171074715-38gr42ulu7b22mkpf1ildmbs41d285hl',
-                  'redirect_uri': 'https://vercel.com/argam11/nextjs-app2',
+                  'redirect_uri': 'https://nextjs-app2-seven.vercel.app',
                   'scope': 'https://www.googleapis.com/auth/drive.metadata.readonly',
                   'state': 'try_sample_request',
                   'include_granted_scopes': 'true',
