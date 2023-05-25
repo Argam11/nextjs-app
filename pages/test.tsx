@@ -21,17 +21,17 @@ const Test = () => {
     }
   }, []);
 
-  function statusChangeCallback(response: any) {
-    console.log(response, 11);
-    if (response.status === 'connected') {
-      console.log('You are connected');
-    } else {
-      console.log('Please login to this webpage.');
-      window.FB.login((res: any) => {
-        console.log('res', res)
-      })
-    }
-  }
+  // function statusChangeCallback(response: any) {
+  //   console.log(response, 11);
+  //   if (response.status === 'connected') {
+  //     console.log('You are connected');
+  //   } else {
+  //     console.log('Please login to this webpage.');
+  //     window.FB.login((res: any) => {
+  //       console.log('res', res)
+  //     })
+  //   }
+  // }
 
   const onFacebookLogin = () => {
     window.FB.getLoginStatus(function (response: any) {
@@ -48,7 +48,7 @@ const Test = () => {
 
   const onGoogleLogin = () => {
     window.FB.getLoginStatus(function (response: any) {
-      statusChangeCallback(response);
+      // statusChangeCallback(response);
     });
   };
 
@@ -60,8 +60,7 @@ const Test = () => {
     <div>
       <button onClick={onGoogleLogin}>Login with Google</button>
       <button onClick={onFacebookLogin}>Login with Facebook</button>
-      <button onClick={onFacebookLogout}>Logout Facebook </button>
-      <div className="fb-login-button" data-width="" data-size="" data-button-type="" data-layout="" data-auto-logout-link="false" data-use-continue-as="false"></div>
+      <button onClick={onFacebookLogout}>Logout Facebook</button>
     </div>
   )
 }
