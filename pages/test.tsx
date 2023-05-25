@@ -36,7 +36,7 @@ const Test = () => {
   const onFacebookLogin = () => {
     window.FB.getLoginStatus(function (response: any) {
       if (response.status === 'connected') {
-        console.log('You are connected');
+        console.log('You are connected', response);
       } else {
         console.log('Please login to this webpage.');
         window.FB.login((res: any) => {
@@ -56,6 +56,7 @@ const Test = () => {
     <div>
       <button onClick={onGoogleLogin}>Login with Google</button>
       <button onClick={onFacebookLogin}>Login with Facebook</button>
+      <div className="fb-login-button" data-width="" data-size="" data-button-type="" data-layout="" data-auto-logout-link="false" data-use-continue-as="false"></div>
     </div>
   )
 }
