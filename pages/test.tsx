@@ -52,10 +52,15 @@ const Test = () => {
     });
   };
 
+  const onFacebookLogout = () => {
+    window.FB.logout();
+  };
+
   return (
     <div>
       <button onClick={onGoogleLogin}>Login with Google</button>
       <button onClick={onFacebookLogin}>Login with Facebook</button>
+      <button onClick={onFacebookLogout}>Logout Facebook </button>
       <div className="fb-login-button" data-width="" data-size="" data-button-type="" data-layout="" data-auto-logout-link="false" data-use-continue-as="false"></div>
     </div>
   )
