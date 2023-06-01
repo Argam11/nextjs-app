@@ -15,7 +15,8 @@ const Test = () => {
         window.FB.init({
           appId: '766633211776568',
           cookie: true,
-          xfbml: true
+          xfbml: true,
+          version: 'v17.0'
         });
       }
     }
