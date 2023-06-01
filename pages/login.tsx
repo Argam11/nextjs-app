@@ -1,15 +1,16 @@
-import React, { useEffect } from 'react'
+import React, { useEffect } from 'react';
+import Script from 'next/script';
 
 const Test = () => {
   useEffect(() => {
-    const id = 'facebook-jssdk';
-    const ref = document.getElementsByTagName('script')[0];
-    if (!document.getElementById(id)) {
-      let js = document.createElement('script');
-      js.id = id;
-      js.async = true;
-      js.src = "//connect.facebook.net/en_US/all.js";
-      ref.parentNode && ref.parentNode.insertBefore(js, ref);
+    // const id = 'facebook-jssdk';
+    // const ref = document.getElementsByTagName('script')[0];
+    // if (!document.getElementById(id)) {
+      // let js = document.createElement('script');
+      // js.id = id;
+      // js.async = true;
+      // js.src = "//connect.facebook.net/en_US/all.js";
+      // ref.parentNode && ref.parentNode.insertBefore(js, ref);
   
       window.fbAsyncInit = function () {
         window.FB.init({
@@ -19,7 +20,7 @@ const Test = () => {
           version: 'v17.0'
         });
       }
-    }
+    // }
   }, []);
 
   const onFacebookLogin = () => {
@@ -78,6 +79,7 @@ const Test = () => {
 
   return (
     <div>
+      <Script src='//connect.facebook.net/en_US/all.js' />
       <button onClick={onGoogleLogin}>Login with Google</button>
       <button onClick={onFacebookLogin}>Login with Facebook</button>
       <button onClick={onFacebookLogout}>Logout Facebook</button>
