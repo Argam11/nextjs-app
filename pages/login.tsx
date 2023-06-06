@@ -50,7 +50,7 @@ const Test = () => {
         callback: (res: any) => {
           console.log(11, res);
         },
-        // ux_mode: 'redirect',
+        ux_mode: 'popup',
         // login_uri: `${baseURL}/callback/auth/google`
       });
     }
