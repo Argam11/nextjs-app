@@ -41,6 +41,8 @@ const Test = () => {
   };
 
   useEffect(() => {
+    console.log(window.google, 11);
+    
     if(window.google) {
       window.google.accounts.id.initialize({
         client_id: '351171074715-38gr42ulu7b22mkpf1ildmbs41d285hl',
@@ -54,6 +56,8 @@ const Test = () => {
   }, [])
 
   const onGoogleLogin = () => {
+    console.log(window.google, 22);
+    
     if (window.google) {
       window.google.accounts.id.prompt();
     }
