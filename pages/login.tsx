@@ -66,6 +66,7 @@ const Test = () => {
   function oauth2SignIn() {
 //@ts-ignore
     google.accounts.id.prompt();
+    
 
 
 
