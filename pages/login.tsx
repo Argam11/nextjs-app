@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import Script from 'next/script';
+import loadScript from './loadScript';
 
 const Test = () => {
   useEffect(() => {
@@ -40,37 +41,64 @@ const Test = () => {
     window.FB.logout();
   };
 
+  useEffect(() => {
+      loadScript('https://accounts.google.com/gsi/client')
+        .then(() => {
+          //@ts-ignore
+          google.accounts.id.initialize({
+            client_id: '351171074715-38gr42ulu7b22mkpf1ildmbs41d285hl',
+            callback: (res) => {
+              console.log(11, res);
+              
+            },
+            // ux_mode: 'redirect',
+            // login_uri: `${baseURL}/callback/auth/google`
+          });
+          //@ts-ignore
+          // google.accounts.id.renderButton(googleButton.current, {
+          //   theme: 'outline',
+          //   size: 'large'
+          // });
+        })
+        .catch(console.error);
+  }, [])
+
   function oauth2SignIn() {
-    // Google's OAuth 2.0 endpoint for requesting an access token
-    var oauth2Endpoint = 'https://accounts.google.com/o/oauth2/v2/auth';
+//@ts-ignore
+    google.accounts.id.prompt();
 
-    // Create element to open OAuth 2.0 endpoint in new window.
-    var form = document.createElement('form');
-    form.setAttribute('method', 'GET'); // Send as a GET request.
-    form.setAttribute('action', oauth2Endpoint);
 
-    // Parameters to pass to OAuth 2.0 endpoint.
-    var params = {
-      'client_id': '351171074715-38gr42ulu7b22mkpf1ildmbs41d285hl',
-      'redirect_uri': 'https://nextjs-app2-seven.vercel.app',
-      'scope': 'https://www.googleapis.com/auth/drive.metadata.readonly',
-      'state': 'try_sample_request',
-      'include_granted_scopes': 'true',
-      'response_type': 'token'
-    };
 
-    // Add form parameters as hidden input values.
-    for (var p in params) {
-      var input = document.createElement('input');
-      input.setAttribute('type', 'hidden');
-      input.setAttribute('name', p);
-      input.setAttribute('value', params[p]);
-      form.appendChild(input);
-    }
+    // // Google's OAuth 2.0 endpoint for requesting an access token
+    // var oauth2Endpoint = 'https://accounts.google.com/o/oauth2/v2/auth';
 
-    // Add form to page and submit it to open the OAuth 2.0 endpoint.
-    document.body.appendChild(form);
-    form.submit();
+    // // Create element to open OAuth 2.0 endpoint in new window.
+    // var form = document.createElement('form');
+    // form.setAttribute('method', 'GET'); // Send as a GET request.
+    // form.setAttribute('action', oauth2Endpoint);
+
+    // // Parameters to pass to OAuth 2.0 endpoint.
+    // var params = {
+    //   'client_id': '351171074715-38gr42ulu7b22mkpf1ildmbs41d285hl',
+    //   'redirect_uri': 'https://nextjs-app2-seven.vercel.app',
+    //   'scope': 'https://www.googleapis.com/auth/drive.metadata.readonly',
+    //   'state': 'try_sample_request',
+    //   'include_granted_scopes': 'true',
+    //   'response_type': 'token'
+    // };
+
+    // // Add form parameters as hidden input values.
+    // for (var p in params) {
+    //   var input = document.createElement('input');
+    //   input.setAttribute('type', 'hidden');
+    //   input.setAttribute('name', p);
+    //   input.setAttribute('value', params[p]);
+    //   form.appendChild(input);
+    // }
+
+    // // Add form to page and submit it to open the OAuth 2.0 endpoint.
+    // document.body.appendChild(form);
+    // form.submit();
   }
 
   const onGoogleLogin = () => {
