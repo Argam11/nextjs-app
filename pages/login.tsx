@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Script from 'next/script';
+import jwt_decode from "jwt-decode";
 
 const Test = () => {
   const [googleLoad, setGoogleLoad] = useState(false);
@@ -45,13 +46,20 @@ const Test = () => {
   useEffect(() => {
     if(window.google && googleLoad) {
       window.google.accounts.id.initialize({
+        text: "signup_with",
         client_id: '351171074715-38gr42ulu7b22mkpf1ildmbs41d285hl.apps.googleusercontent.com',
         callback: (res: any) => {
-          console.log(11, res);
+          console.log(11, jwt_decode(res.credential));
+
         },
-        ux_mode: 'popup',
-        login_uri: `https://nextjs-app2-seven.vercel.app/login`
+        // ux_mode: 'popup',
+        // login_uri: `https://nextjs-app2-seven.vercel.app/login`
       });
+
+      window.google.accounts.id.renderButton(
+        document.getElementById('google-sign-in'),
+        { theme: "outline", size: "large" }
+      )
     }
   }, [googleLoad])
 
@@ -70,6 +78,7 @@ const Test = () => {
       <button onClick={onGoogleLogin}>Login with Google</button>
       <button onClick={onFacebookLogin}>Login with Facebook</button>
       <button onClick={onFacebookLogout}>Logout Facebook</button>
+      <div id="google-sign-in"></div>
     </div>
   )
 }
