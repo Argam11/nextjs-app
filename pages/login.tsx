@@ -1,7 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Script from 'next/script';
 
 const Test = () => {
+  const [googleLoad, setGoogleLoad] = useState(false);
+
   useEffect(() => {
     // const id = 'facebook-jssdk';
     // const ref = document.getElementsByTagName('script')[0];
@@ -41,9 +43,7 @@ const Test = () => {
   };
 
   useEffect(() => {
-    console.log(window.google, 11);
-    
-    if(window.google) {
+    if(window.google && googleLoad) {
       window.google.accounts.id.initialize({
         client_id: '351171074715-38gr42ulu7b22mkpf1ildmbs41d285hl',
         callback: (res: any) => {
@@ -53,7 +53,7 @@ const Test = () => {
         // login_uri: `${baseURL}/callback/auth/google`
       });
     }
-  }, [])
+  }, [googleLoad])
 
   const onGoogleLogin = () => {
     console.log(window.google, 22);
@@ -66,7 +66,7 @@ const Test = () => {
   return (
     <div>
       <Script src='//connect.facebook.net/en_US/all.js' />
-      <Script src='https://accounts.google.com/gsi/client' />
+      <Script src='https://accounts.google.com/gsi/client' onReady={() => setGoogleLoad(true)} />
       <button onClick={onGoogleLogin}>Login with Google</button>
       <button onClick={onFacebookLogin}>Login with Facebook</button>
       <button onClick={onFacebookLogout}>Logout Facebook</button>
