@@ -45,6 +45,7 @@ const Test = () => {
   useEffect(() => {
     if(window.google && googleLoad) {
       window.google.accounts.id.initialize({
+        auto_select: false,
         client_id: '351171074715-38gr42ulu7b22mkpf1ildmbs41d285hl',
         callback: (res: any) => {
           console.log(11, res);
