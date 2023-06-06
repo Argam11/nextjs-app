@@ -45,13 +45,12 @@ const Test = () => {
   useEffect(() => {
     if(window.google && googleLoad) {
       window.google.accounts.id.initialize({
-        // auto_select: false,
-        client_id: '351171074715-38gr42ulu7b22mkpf1ildmbs41d285hl',
+        client_id: '351171074715-38gr42ulu7b22mkpf1ildmbs41d285hl.apps.googleusercontent.com',
         callback: (res: any) => {
           console.log(11, res);
         },
-        // ux_mode: 'popup',
-        // login_uri: `${baseURL}/callback/auth/google`
+        ux_mode: 'popup',
+        login_uri: `https://nextjs-app2-seven.vercel.app/login`
       });
     }
   }, [googleLoad])
