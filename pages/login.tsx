@@ -6,28 +6,30 @@ const Test = () => {
   const [googleLoad, setGoogleLoad] = useState(false);
 
   useEffect(() => {
-    // const id = 'facebook-jssdk';
-    // const ref = document.getElementsByTagName('script')[0];
-    // if (!document.getElementById(id)) {
-    // let js = document.createElement('script');
-    // js.id = id;
-    // js.async = true;
-    // js.src = "//connect.facebook.net/en_US/all.js";
-    // ref.parentNode && ref.parentNode.insertBefore(js, ref);
+    const id = 'facebook-jssdk';
+    const ref = document.getElementsByTagName('script')[0];
+    if (!document.getElementById(id)) {
+      let js = document.createElement('script');
+      js.id = id;
+      js.async = true;
+      js.src = "//connect.facebook.net/en_US/all.js";
+      ref.parentNode && ref.parentNode.insertBefore(js, ref);
 
-    window.fbAsyncInit = function () {
-      window.FB.init({
-        appId: '766633211776568',
-        cookie: true,
-        xfbml: true,
-        version: 'v17.0'
-      });
+      window.fbAsyncInit = function () {
+        window.FB.init({
+          appId: '766633211776568',
+          cookie: true,
+          xfbml: true,
+          version: 'v17.0'
+        });
+      }
     }
-    // }
   }, []);
 
   const onFacebookLogin = () => {
     window.FB.getLoginStatus(function (response: any) {
+      console.log('response', response);
+      
       if (response.status === 'connected') {
         console.log('You are connected', response);
       } else {
@@ -73,7 +75,7 @@ const Test = () => {
 
   return (
     <div>
-      <Script src='//connect.facebook.net/en_US/all.js' />
+      {/* <Script src='//connect.facebook.net/en_US/all.js' /> */}
       <Script src='https://accounts.google.com/gsi/client' onReady={() => setGoogleLoad(true)} />
       <button onClick={onGoogleLogin}>Login with Google</button>
       <button onClick={onFacebookLogin}>Login with Facebook</button>
