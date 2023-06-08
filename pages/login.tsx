@@ -32,13 +32,13 @@ const Test = () => {
         console.log('You are connected', response);
 
         window.FB.api('/me?fields=email', function(response: any) {
-          // console.log('Successful login for: ', response);
-          // if(response.error) {
-          //   window.FB.logout();
+          console.log('Successful login for: ', response);
+          if(response.error) {
+            window.FB.logout();
           //   window.FB.login((res: any) => {
           //     console.log('res 1', res)
           //   }, { scope: 'email' });
-          // }
+          }
         });
       } else {
         console.log('Please login to this webpage.');
