@@ -35,9 +35,9 @@ const Test = () => {
           console.log('Successful login for: ', response);
           if(response.error) {
             window.FB.logout();
-          //   window.FB.login((res: any) => {
-          //     console.log('res 1', res)
-          //   }, { scope: 'email' });
+            window.FB.login((res: any) => {
+              console.log('res 1', res)
+            }, { scope: 'email' });
           }
         });
       } else {
