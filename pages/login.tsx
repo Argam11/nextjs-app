@@ -34,7 +34,7 @@ const Test = () => {
         window.FB.api('/me', function(response: any) {
           console.log('Successful login for: ', response);
           if(response.error) {
-            // window.FB.logout();
+            window.FB.logout();
             window.FB.login((res: any) => {
               console.log('res 1', res)
             });
