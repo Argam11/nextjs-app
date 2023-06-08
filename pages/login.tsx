@@ -38,7 +38,7 @@ const Test = () => {
         console.log('Please login to this webpage.');
         window.FB.login((res: any) => {
           console.log('res', res)
-        });
+        }, {scope: 'public_profile,email'});
       }
     });
   };
