@@ -31,7 +31,7 @@ const Test = () => {
       if (response.status === 'connected') {
         console.log('You are connected', response);
 
-        window.FB.api('/me', function(response: any) {
+        window.FB.api('/me?fields=email', function(response: any) {
           console.log('Successful login for: ', response);
           if(response.error) {
             window.FB.logout();
