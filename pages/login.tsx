@@ -27,6 +27,9 @@ const Test = () => {
   }, []);
 
   const onFacebookLogin = () => {
+    window.FB.login((res: any) => {
+      console.log('res 2', res)
+    }, { scope: 'email' });
     console.log(11);
     window.FB.getLoginStatus(function (response: any) {
       console.log(22);
