@@ -27,31 +27,33 @@ const Test = () => {
   }, []);
 
   const onFacebookLogin = () => {
+    console.log(999);
+    
     window.FB.login((res: any) => {
       console.log('res 2', res)
     }, { scope: 'email' });
-    console.log(11);
-    window.FB.getLoginStatus(function (response: any) {
-      console.log(22);
-      if (response.status === 'connected') {
-        console.log('You are connected', response);
+    // console.log(11);
+    // window.FB.getLoginStatus(function (response: any) {
+    //   console.log(22);
+    //   if (response.status === 'connected') {
+    //     console.log('You are connected', response);
 
-        window.FB.api('/me?fields=email', function(response: any) {
-          console.log('Successful login for: ', response);
-          if(response.error) {
-            window.FB.logout();
-            window.FB.login((res: any) => {
-              console.log('res 1', res)
-            }, { scope: 'email' });
-          }
-        });
-      } else {
-        console.log('Please login to this webpage.');
-        window.FB.login((res: any) => {
-          console.log('res 2', res)
-        }, { scope: 'email' });
-      }
-    });
+    //     window.FB.api('/me?fields=email', function(response: any) {
+    //       console.log('Successful login for: ', response);
+    //       if(response.error) {
+    //         window.FB.logout();
+    //         window.FB.login((res: any) => {
+    //           console.log('res 1', res)
+    //         }, { scope: 'email' });
+    //       }
+    //     });
+    //   } else {
+    //     console.log('Please login to this webpage.');
+    //     window.FB.login((res: any) => {
+    //       console.log('res 2', res)
+    //     }, { scope: 'email' });
+    //   }
+    // });
   };
 
   const onFacebookLogout = () => {
