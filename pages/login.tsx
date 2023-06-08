@@ -32,7 +32,7 @@ const Test = () => {
         console.log('You are connected', response);
 
         window.FB.api('/me', function(response: any) {
-          console.log('Successful login for: ' + response);
+          console.log('Successful login for: ', response);
         });
       } else {
         console.log('Please login to this webpage.');
