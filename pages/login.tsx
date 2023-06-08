@@ -27,7 +27,9 @@ const Test = () => {
   }, []);
 
   const onFacebookLogin = () => {
+    console.log(11);
     window.FB.getLoginStatus(function (response: any) {
+      console.log(22);
       if (response.status === 'connected') {
         console.log('You are connected', response);
 
