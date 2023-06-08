@@ -33,12 +33,17 @@ const Test = () => {
 
         window.FB.api('/me', function(response: any) {
           console.log('Successful login for: ', response);
+          if(response.error) {
+            window.FB.login((res: any) => {
+              console.log('res', res)
+            });
+          }
         });
       } else {
         console.log('Please login to this webpage.');
         window.FB.login((res: any) => {
           console.log('res', res)
-        }, {scope: 'public_profile,email'});
+        });
       }
     });
   };
