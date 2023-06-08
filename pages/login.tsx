@@ -34,15 +34,16 @@ const Test = () => {
         window.FB.api('/me', function(response: any) {
           console.log('Successful login for: ', response);
           if(response.error) {
+            // window.FB.logout();
             window.FB.login((res: any) => {
-              console.log('res', res)
+              console.log('res 1', res)
             });
           }
         });
       } else {
         console.log('Please login to this webpage.');
         window.FB.login((res: any) => {
-          console.log('res', res)
+          console.log('res 2', res)
         });
       }
     });
