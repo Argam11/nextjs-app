@@ -37,14 +37,14 @@ const Test = () => {
             window.FB.logout();
             window.FB.login((res: any) => {
               console.log('res 1', res)
-            });
+            }, { scope: 'email' });
           }
         });
       } else {
         console.log('Please login to this webpage.');
         window.FB.login((res: any) => {
           console.log('res 2', res)
-        });
+        }, { scope: 'email' });
       }
     });
   };
