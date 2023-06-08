@@ -28,10 +28,12 @@ const Test = () => {
 
   const onFacebookLogin = () => {
     window.FB.getLoginStatus(function (response: any) {
-      console.log('response', response);
-      
       if (response.status === 'connected') {
         console.log('You are connected', response);
+
+        window.FB.api('/me', function(response: any) {
+          console.log('Successful login for: ' + response);
+        });
       } else {
         console.log('Please login to this webpage.');
         window.FB.login((res: any) => {
