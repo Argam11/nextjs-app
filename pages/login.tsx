@@ -87,6 +87,7 @@ const Test = () => {
         client_id: '351171074715-38gr42ulu7b22mkpf1ildmbs41d285hl.apps.googleusercontent.com',
         ux_mode: "popup",
         callback: (res: any) => {
+          console.log('res', res);
           console.log(11, jwt_decode(res.credential));
 
         },
