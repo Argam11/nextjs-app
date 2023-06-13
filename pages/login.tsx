@@ -119,7 +119,7 @@ const Test = () => {
       <button onClick={onGoogleLogin}>Login with Google</button>
       <button onClick={onFacebookLogin}>Login with Facebook</button>
       <button onClick={onFacebookLogout}>Logout Facebook</button>
-      <div id="google-sign-in"></div>
+      {/* <div id="google-sign-in-11"></div> */}
     </div>
   )
 }
