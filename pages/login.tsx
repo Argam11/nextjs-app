@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import Script from 'next/script';
 import jwt_decode from "jwt-decode";
+import { Cookies } from 'react-cookie';
 
 const Test = () => {
+  const cookies = new Cookies();
   const [googleLoad, setGoogleLoad] = useState(false);
 
   useEffect(() => {
@@ -77,6 +79,7 @@ const Test = () => {
     console.log(window.google, 22);
     
     if (window.google) {
+      cookies.remove('g_state');
       window.google.accounts.id.prompt();
     }
   };
