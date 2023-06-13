@@ -67,10 +67,10 @@ const Test = () => {
         // login_uri: `https://nextjs-app2-seven.vercel.app/login`
       });
 
-      // window.google.accounts.id.renderButton(
-      //   document.getElementById('google-sign-in'),
-      //   { theme: "outline", size: "large" }
-      // )
+      window.google.accounts.id.renderButton(
+        document.getElementById('google-sign-in'),
+        { theme: "outline", size: "large" }
+      )
     }
   }, [googleLoad])
 
@@ -90,7 +90,7 @@ const Test = () => {
       <button onClick={onGoogleLogin}>Login with Google</button>
       <button onClick={onFacebookLogin}>Login with Facebook</button>
       <button onClick={onFacebookLogout}>Logout Facebook</button>
-      {/* <div id="google-sign-in"></div> */}
+      <div id="google-sign-in"></div>
     </div>
   )
 }
