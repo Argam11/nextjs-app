@@ -59,6 +59,7 @@ const Test = () => {
       window.google.accounts.id.initialize({
         text: "signup_with",
         client_id: '351171074715-38gr42ulu7b22mkpf1ildmbs41d285hl.apps.googleusercontent.com',
+        prompt: 'select_account',
         callback: (res: any) => {
           console.log(11, jwt_decode(res.credential));
 
