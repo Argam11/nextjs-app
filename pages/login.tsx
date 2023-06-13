@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Script from 'next/script';
 import jwt_decode from "jwt-decode";
-import { Cookies } from 'react-cookie';
+import Cookies from 'js-cookie';
 
 const Test = () => {
   const cookies = new Cookies();
