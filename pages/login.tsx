@@ -4,7 +4,6 @@ import jwt_decode from "jwt-decode";
 import Cookies from 'js-cookie';
 
 const Test = () => {
-  const cookies = new Cookies();
   const [googleLoad, setGoogleLoad] = useState(false);
 
   useEffect(() => {
@@ -79,7 +78,7 @@ const Test = () => {
     console.log(window.google, 22);
     
     if (window.google) {
-      cookies.remove('g_state');
+      Cookies.remove('g_state');
       window.google.accounts.id.prompt();
     }
   };
