@@ -1,35 +1,36 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import Script from 'next/script';
 import jwt_decode from "jwt-decode";
 import Cookies from 'js-cookie';
 
-const createFakeGoogleWrapper = () => {
-  const googleLoginWrapper = document.createElement("div");
-  // Or you can simple hide it in CSS rule for custom-google-button
-  googleLoginWrapper.style.display = "none";
-  googleLoginWrapper.classList.add("custom-google-button");
+// const createFakeGoogleWrapper = () => {
+//   const googleLoginWrapper = document.createElement("div");
+//   // Or you can simple hide it in CSS rule for custom-google-button
+//   googleLoginWrapper.style.display = "none";
+//   googleLoginWrapper.classList.add("custom-google-button");
 
-  // Add the wrapper to body
-  document.body.appendChild(googleLoginWrapper);
+//   // Add the wrapper to body
+//   document.body.appendChild(googleLoginWrapper);
   
-  // Use GSI javascript api to render the button inside our wrapper
-  // You can ignore the properties because this button will not appear
-  window.google.accounts.id.renderButton(googleLoginWrapper, {
-    type: "icon",
-    width: "200",
-  });
+//   // Use GSI javascript api to render the button inside our wrapper
+//   // You can ignore the properties because this button will not appear
+//   window.google.accounts.id.renderButton(googleLoginWrapper, {
+//     type: "icon",
+//     width: "200",
+//   });
 
-  const googleLoginWrapperButton =
-    googleLoginWrapper.querySelector("div[role=button]") as HTMLElement;
+//   const googleLoginWrapperButton =
+//     googleLoginWrapper.querySelector("div[role=button]") as HTMLElement;
 
-  return {
-    click: () => {
-      googleLoginWrapperButton.click();
-    },
-  };
-};
+//   return {
+//     click: () => {
+//       googleLoginWrapperButton.click();
+//     },
+//   };
+// };
 
 const Test = () => {
+  const googleButtonRef = useRef<HTMLDivElement>(null);
   const [googleLoad, setGoogleLoad] = useState(false);
 
   useEffect(() => {
@@ -93,33 +94,36 @@ const Test = () => {
         // login_uri: `https://nextjs-app2-seven.vercel.app/login`
       });
 
-      window.google.accounts.id.renderButton(
-        document.getElementById('google-sign-in'),
-        { theme: "outline", size: "large" }
-      )
+      if (googleButtonRef.current) {
+        window.google.accounts.id.renderButton(googleButtonRef.current, {
+          type: 'standard',
+          theme: 'outline',
+          size: 'large'
+        });
+      }
     }
   }, [googleLoad])
 
-  const onGoogleLogin = () => {
-    console.log(window.google, 22);
+  // const onGoogleLogin = () => {
+  //   console.log(window.google, 22);
     
-    if (window.google) {
-      // Cookies.remove('g_state');
-      // window.google.accounts.id.prompt();
+  //   if (window.google) {
+  //     // Cookies.remove('g_state');
+  //     // window.google.accounts.id.prompt();
 
-      const googleButtonWrapper = createFakeGoogleWrapper();
-      googleButtonWrapper.click();
-    }
-  };
+  //     // const googleButtonWrapper = createFakeGoogleWrapper();
+  //     // googleButtonWrapper.click();
+  //   }
+  // };
 
   return (
     <div>
       {/* <Script src='//connect.facebook.net/en_US/all.js' /> */}
       <Script src='https://accounts.google.com/gsi/client' onReady={() => setGoogleLoad(true)} />
-      <button onClick={onGoogleLogin}>Login with Google</button>
+      {/* <button onClick={onGoogleLogin}>Login with Google</button> */}
       <button onClick={onFacebookLogin}>Login with Facebook</button>
       <button onClick={onFacebookLogout}>Logout Facebook</button>
-      {/* <div id="google-sign-in-11"></div> */}
+      <div ref={googleButtonRef}></div>
     </div>
   )
 }
