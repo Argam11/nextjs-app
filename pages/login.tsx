@@ -3,6 +3,32 @@ import Script from 'next/script';
 import jwt_decode from "jwt-decode";
 import Cookies from 'js-cookie';
 
+const createFakeGoogleWrapper = () => {
+  const googleLoginWrapper = document.createElement("div");
+  // Or you can simple hide it in CSS rule for custom-google-button
+  googleLoginWrapper.style.display = "none";
+  googleLoginWrapper.classList.add("custom-google-button");
+
+  // Add the wrapper to body
+  document.body.appendChild(googleLoginWrapper);
+  
+  // Use GSI javascript api to render the button inside our wrapper
+  // You can ignore the properties because this button will not appear
+  window.google.accounts.id.renderButton(googleLoginWrapper, {
+    type: "icon",
+    width: "200",
+  });
+
+  const googleLoginWrapperButton =
+    googleLoginWrapper.querySelector("div[role=button]") as HTMLElement;
+
+  return {
+    click: () => {
+      googleLoginWrapperButton.click();
+    },
+  };
+};
+
 const Test = () => {
   const [googleLoad, setGoogleLoad] = useState(false);
 
@@ -57,8 +83,8 @@ const Test = () => {
   useEffect(() => {
     if(window.google && googleLoad) {
       window.google.accounts.id.initialize({
-        text: "signup_with",
         client_id: '351171074715-38gr42ulu7b22mkpf1ildmbs41d285hl.apps.googleusercontent.com',
+        ux_mode: "popup",
         callback: (res: any) => {
           console.log(11, jwt_decode(res.credential));
 
@@ -67,10 +93,10 @@ const Test = () => {
         // login_uri: `https://nextjs-app2-seven.vercel.app/login`
       });
 
-      // window.google.accounts.id.renderButton(
-      //   document.getElementById('google-sign-in'),
-      //   { theme: "outline", size: "large" }
-      // )
+      window.google.accounts.id.renderButton(
+        document.getElementById('google-sign-in'),
+        { theme: "outline", size: "large" }
+      )
     }
   }, [googleLoad])
 
@@ -78,8 +104,11 @@ const Test = () => {
     console.log(window.google, 22);
     
     if (window.google) {
-      Cookies.remove('g_state');
-      window.google.accounts.id.prompt();
+      // Cookies.remove('g_state');
+      // window.google.accounts.id.prompt();
+
+      const googleButtonWrapper = createFakeGoogleWrapper();
+      googleButtonWrapper.click();
     }
   };
 
