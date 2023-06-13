@@ -78,7 +78,7 @@ const Test = () => {
     console.log(window.google, 22);
     
     if (window.google) {
-      Cookies.remove('g_state');
+      // Cookies.remove('g_state');
       window.google.accounts.id.prompt();
     }
   };
