@@ -92,7 +92,7 @@ const Test = () => {
 
         // },
         // ux_mode: 'popup',
-        // login_uri: `https://nextjs-app2-seven.vercel.app/login`
+        login_uri: `https://nextjs-app-beryl-seven.vercel.app/login`
       });
 
       if (googleButtonRef.current) {
