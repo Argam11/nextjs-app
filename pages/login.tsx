@@ -81,29 +81,29 @@ const Test = () => {
     window.FB.logout();
   };
 
-  // useEffect(() => {
-  //   if(window.google && googleLoad) {
-  //     window.google.accounts.id.initialize({
-  //       client_id: '351171074715-38gr42ulu7b22mkpf1ildmbs41d285hl.apps.googleusercontent.com',
-  //       ux_mode: "redirect",
-  //       // callback: (res: any) => {
-  //       //   console.log('res', res);
-  //       //   console.log(11, jwt_decode(res.credential));
+  useEffect(() => {
+    if(window.google && googleLoad) {
+      window.google.accounts.id.initialize({
+        client_id: '351171074715-38gr42ulu7b22mkpf1ildmbs41d285hl.apps.googleusercontent.com',
+        // ux_mode: "redirect",
+        callback: (res: any) => {
+          console.log('res', res);
+          console.log(11, jwt_decode(res.credential));
 
-  //       // },
-  //       // ux_mode: 'popup',
-  //       // login_uri: `https://nextjs-app-beryl-seven.vercel.app/login`
-  //     });
+        },
+        ux_mode: 'popup',
+        // login_uri: `https://nextjs-app-beryl-seven.vercel.app/login`
+      });
 
-  //     if (googleButtonRef.current) {
-  //       window.google.accounts.id.renderButton(googleButtonRef.current, {
-  //         type: 'standard',
-  //         theme: 'outline',
-  //         size: 'large'
-  //       });
-  //     }
-  //   }
-  // }, [googleLoad])
+      if (googleButtonRef.current) {
+        window.google.accounts.id.renderButton(googleButtonRef.current, {
+          type: 'standard',
+          theme: 'outline',
+          size: 'large'
+        });
+      }
+    }
+  }, [googleLoad])
 
   const onGoogleLogin = () => {
     // console.log(window.google, 22);
@@ -152,7 +152,7 @@ const Test = () => {
     <div>
       {/* <Script src='//connect.facebook.net/en_US/all.js' /> */}
       <Script src='https://accounts.google.com/gsi/client' onReady={() => setGoogleLoad(true)} />
-      <button onClick={onGoogleLogin}>Login with Google</button>
+      {/* <button onClick={onGoogleLogin}>Login with Google</button>l */}
       <button onClick={onFacebookLogin}>Login with Facebook</button>
       <button onClick={onFacebookLogout}>Logout Facebook</button>
       <div ref={googleButtonRef}></div>
