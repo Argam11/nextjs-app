@@ -100,11 +100,7 @@ const Test = () => {
           type: 'standard',
           theme: 'outline',
           size: 'large',
-          width: 400,
-          click_listener: (www) => {
-            console.log(www, 11);
-            
-          }
+          width: '100%'
         });
       }
     }
@@ -160,7 +156,7 @@ const Test = () => {
       {/* <button onClick={onGoogleLogin}>Login with Google</button>l */}
       <button onClick={onFacebookLogin}>Login with Facebook</button>
       <button onClick={onFacebookLogout}>Logout Facebook</button>
-      <div ref={googleButtonRef}></div>
+      <div style={{ width: '500px' }} ref={googleButtonRef}></div>
     </div>
   )
 }
