@@ -157,8 +157,8 @@ const Test = () => {
       <button onClick={onFacebookLogin}>Login with Facebook</button>
       <button onClick={onFacebookLogout}>Logout Facebook</button>
       <div style={{ position: 'relative' }}>
-        <div ref={googleButtonRef} style={{ opacity: 0.0001 }}></div>
         <button style={{ width: '400px', height: 40, position: 'absolute', top: 0, left: 0 }}>Sign up with Google</button>
+        <div ref={googleButtonRef} style={{ opacity: 0.0001 }}></div>
       </div>
     </div>
   )
