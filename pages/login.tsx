@@ -156,9 +156,9 @@ const Test = () => {
       {/* <button onClick={onGoogleLogin}>Login with Google</button>l */}
       <button onClick={onFacebookLogin}>Login with Facebook</button>
       <button onClick={onFacebookLogout}>Logout Facebook</button>
-      <div>
+      <div style={{ position: 'relative' }}>
         <div ref={googleButtonRef} style={{ opacity: 0.0001 }}></div>
-        <button style={{ width: '400px', position: 'absolute', top: 0, left: 0 }}>Sign up with Google</button>
+        <button style={{ width: '400px', height: 40, position: 'absolute', top: 0, left: 0 }}>Sign up with Google</button>
       </div>
     </div>
   )
