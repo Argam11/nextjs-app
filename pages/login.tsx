@@ -99,7 +99,8 @@ const Test = () => {
         window.google.accounts.id.renderButton(googleButtonRef.current, {
           type: 'standard',
           theme: 'outline',
-          size: 'large'
+          size: 'large',
+          width: 400
         });
       }
     }
