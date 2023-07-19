@@ -100,7 +100,11 @@ const Test = () => {
           type: 'standard',
           theme: 'outline',
           size: 'large',
-          width: 400
+          width: 400,
+          click_listener: (www) => {
+            console.log(www, 11);
+            
+          }
         });
       }
     }
