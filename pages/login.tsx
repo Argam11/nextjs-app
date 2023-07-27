@@ -100,7 +100,7 @@ const Test = () => {
           type: 'standard',
           theme: 'outline',
           size: 'large',
-          width: 260
+          width: 360
         });
       }
     }
