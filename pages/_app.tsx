@@ -12,6 +12,8 @@ declare global {
 
 
 function MyApp({ Component, pageProps }) {
+  console.log(11);
+  
   return (
     <>
       <Head>
